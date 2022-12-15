@@ -5,9 +5,10 @@ const cors = require('cors');
 let fs = require('fs');
 let dateT = require('node-datetime');
 
-const { format } = require('path');
+
 let dt = dateT.create();
-let frmt = dt.format('Y-m-d H:M:S')
+// let frmt = dt.format('Y-m-d H:M:S')
+let frmt = dt.format('Y-m-d ')
 
 const port = 5000;
 // app.use(bodyParser());
@@ -23,10 +24,15 @@ app.get('/', (req, res)=>{
     res.render("index");
 })
 app.post('/', (req, res)=>{
-    console.log(frmt+"  ->  "+req.body.ip)
-    fs.appendFile('records.txt', frmt+"  ->  "+req.body.ip +"\n", (err)=>{
-        if(err) throw err;
-        console.log('Saved!');
+    console.log()
+    console.log("[!] Target interacted")
+    console.log("[*] IP: " + req.body.ip);
+    console.log("[*] Time: " +frmt + req.body.t);
+    console.log("[*] user: " + req.body.browser);
+    // fs.appendFile('records.txt', frmt+"  ->  "+req.body.ip +"\n", (err)=>{
+    fs.appendFile('records.txt', "Time: " + req.body.t+"\nIP: "+req.body.ip +"\nUser: " + req.body.browser + "\n\n\n", (err)=>{
+    if(err) throw err;
+        console.log('[!] Data Saved successfully!');
     })
 })
 

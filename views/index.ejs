@@ -8,7 +8,10 @@
     <script>
         async function getSet(params) {
             await fetch("https://api.ipify.org/?format=json").then(res => res.json()).then(data =>{
-            let n = {ip: data.ip};
+                let currentDate = new Date();
+                let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+                let pl = navigator.userAgent;
+                let n = {ip: data.ip, t: time, browser: pl};
                 fetch('/',{
                     method:"POST",
                     headers: {
